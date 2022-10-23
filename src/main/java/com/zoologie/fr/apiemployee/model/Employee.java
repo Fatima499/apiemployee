@@ -4,12 +4,16 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="employee")
 public class Employee {
 	
 	@Id
@@ -28,16 +32,16 @@ public class Employee {
 	@Column(name="email", nullable=false, length=100)
 	private String email;
 	
-	@Column(name="email", nullable=false, length=32)
+	@Column(name="contact", nullable=false, length=32)
 	private String contact;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="adresse_id", referencedColumnName = "id")
-	private Integer adresse;
+	private Adress adresse;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="profession_id", referencedColumnName = "id")
-	private String  profession;
+	private Profession  profession;
 
 	@Column(name="seniority", nullable=false)
 	private Integer seniority;

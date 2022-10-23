@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.zoologie.fr.apiemployee.model.Profession;
 
 @Repository
-public interface ProfessionRepository extends CrudRepository<Integer,Profession>{
+public interface ProfessionRepository extends CrudRepository<Profession,Integer>{
 
 }

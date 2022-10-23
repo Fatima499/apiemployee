@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.zoologie.fr.apiemployee.model.Employee;
 
 @Repository
-public interface EmployeeRepository extends CrudRepository<Integer,Employee> {
+public interface EmployeeRepository extends CrudRepository<Employee,Integer> {
 
 }
