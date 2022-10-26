@@ -12,7 +12,7 @@ public class ProfessionService {
 	private ProfessionRepository professionReposity;
 	
 	
-	public Profession getProfession(Integer id) {
+	public Profession getProfessionById(Integer id) {
 		return this.professionReposity.findById(id).get();
 	}
 	
