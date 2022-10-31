@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,20 +23,34 @@ import com.zoologie.fr.apiemployee.service.AdressService;
 public class AdressController {
 	
 	@Autowired
-	private AdressService adressService;
+	private  AdressService adressService;
 	
-	@GetMapping(value="/adress/all", produces ="application/json")
+	/**
+	 * GET All addresses
+	 * @return a Iterable that contains all adresses
+	 */
+	@GetMapping(value="/adresses")
 	public Iterable<Adress> getAllAdress(){
 		return this.adressService.getAllAdress();
 	}
 	
-	@GetMapping(value="/adress/{id}", produces="application/json")
+	/**
+	 * GET a adress by id
+	 * @param id
+	 * @return a adress
+	 */
+	@GetMapping(value="/adresses/{id}")
 	public Adress getAdressById(@PathVariable Integer id) {
 		 return this.adressService.getAdressById(id);
 	}
 	
-	@PutMapping(value="/adress", produces="application/json")
-	public ResponseEntity<Adress> updateAdress(@RequestBody Adress adress ) {
+	/**
+	 * POST : create a new adress
+	 * @param adress
+	 * @return a creation code 201 and URI to created resource
+	 */
+	@PostMapping(value="/adresses")
+	public ResponseEntity<Adress> addAdress(@RequestBody Adress adress ) {
 		Adress adressAdded = this.adressService.saveAdress(adress);
 		if(Objects.isNull(adressAdded)) {
 			return ResponseEntity.noContent().build();
@@ -47,12 +62,29 @@ public class AdressController {
 		return ResponseEntity.created(location).build();
 	}
 	
-	@DeleteMapping(value="/adress/{id}", produces="application/json")
+	/**
+	 * PUT : update a adress
+	 * @param adress
+	 */
+	@PutMapping(value="/adresses")
+	private void updateAdress(@RequestBody Adress adress) {
+		this.adressService.saveAdress(adress);
+	}
+	
+	
+	/**
+	 * Delete a adress
+	 * @param id
+	 */
+	@DeleteMapping(value="/adresses{id}")
 	public void deleteAdressById(@PathVariable Integer id) {
 		this.adressService.deleteAdressById(id);
 	}
 	
-	@DeleteMapping(value="/adress/all", produces="application/json")
+	/**
+	 * Delete all addresses
+	 */
+	@DeleteMapping(value="/adresses")
 	public void deleteAllAdress() {
 		this.adressService.deleteAllAdress();
 	}

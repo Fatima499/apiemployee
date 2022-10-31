@@ -20,9 +20,11 @@ public class ProfessionService {
 		return this.professionReposity.findAll();
 	}
 	
-	public void saveProfession(Profession profession) {
-		this.professionReposity.save(profession);
+	public Profession saveProfession(Profession profession) {
+		return this.professionReposity.save(profession);
 	}
+	
+	
 	
 	public void deleteProfession(Profession profession) {
 		this.professionReposity.delete(profession);
